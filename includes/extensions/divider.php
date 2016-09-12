@@ -43,9 +43,9 @@ function fsn_init_divider() {
 			if (!empty($thickness)) {
 				$style_rules .= 'border-width:'. $thickness .';';
 			}
-			$style = !empty($style_rules) ? ' style="'. $style_rules .'"' : '';
+			$style = !empty($style_rules) ? ' style="'. esc_attr($style_rules) .'"' : '';
 			$output .= '<div class="row">';
-				$output .= '<div class="col-sm-'. $width . (!empty($offset) ? ' col-sm-offset-'. $offset : '') .'">';
+				$output .= '<div class="col-sm-'. esc_attr($width) . (!empty($offset) ? ' col-sm-offset-'. esc_attr($offset) : '') .'">';
 					$output .= '<div class="fsn-divider '. fsn_style_params_class($atts) .'"><hr'. (!empty($style) ? $style : '') .'></div>';
 				$output .= '</div>';
 			$output .= '</div>';
@@ -66,7 +66,7 @@ function fsn_init_divider() {
 			if (!empty($height) || !empty($offset_top)) {
 				$style_rules .= (!empty($height) ? 'height:'. $height .';' : '') . (!empty($offset_top) ? 'top:'. $offset_top .';' : '');
 			}
-			$style = !empty($style_rules) ? ' style="'. $style_rules .'"' : '';
+			$style = !empty($style_rules) ? ' style="'. esc_attr($style_rules) .'"' : '';
 			$output .= '<div class="fsn-divider '. fsn_style_params_class($atts) .'"><span class="fsn-divider-vertical"'. (!empty($style) ? $style : '') .'></span></div>';
 		}
 		
