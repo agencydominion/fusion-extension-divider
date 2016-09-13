@@ -39,6 +39,8 @@ function fsn_init_divider() {
 				} else {
 					$style_rules .= 'border-color:'. $border_color .';';	
 				}
+			} else if (!empty($border_color_opacity)) {
+				$style_rules .= 'opacity:'. $border_color_opacity .';';	
 			}
 			if (!empty($thickness)) {
 				$style_rules .= 'border-width:'. $thickness .';';
@@ -59,6 +61,8 @@ function fsn_init_divider() {
 				} else {
 					$style_rules .= 'background:'. $border_color .';';	
 				}
+			} else if (!empty($border_color_opacity)) {
+				$style_rules .= 'opacity:'. $border_color_opacity .';';	
 			}
 			if (!empty($thickness)) {
 				$style_rules .= 'width:'. $thickness .';';
