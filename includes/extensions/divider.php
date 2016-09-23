@@ -11,74 +11,13 @@
  * @since 1.0.0
  */
 
+/**
+ * Map Shortcode
+ */
+
 add_action('init', 'fsn_init_divider', 12);
 function fsn_init_divider() {
-	
-	//OUTPUT SHORTCODE
-	function fsn_divider_shortcode( $atts ) {
-		extract( shortcode_atts( array(
-			'orientation' => 'horizontal',
-			'width' => '12',
-			'offset' => false,
-			'border_color' => '',
-			'border_color_opacity' => '',
-			'thickness' => '',
-			'height' => '',
-			'offset_top' => ''
-		), $atts ) );
-		
-		$output = '';
-		$style_rules = '';
-		
-		if ($orientation == 'horizontal') {
-			//HORIZONTAL DIVIDER
-			if (!empty($border_color)) {
-				if (!empty($border_color_opacity)) { 
-					$rgb = fsn_hex2rgb($border_color);	
-					$style_rules .= 'border-color:'. $border_color .';border-color:rgba('. $rgb[0] .','. $rgb[1] .','. $rgb[2] .','. $border_color_opacity .');';
-				} else {
-					$style_rules .= 'border-color:'. $border_color .';';	
-				}
-			} else if (!empty($border_color_opacity)) {
-				$style_rules .= 'opacity:'. $border_color_opacity .';';	
-			}
-			if (!empty($thickness)) {
-				$style_rules .= 'border-width:'. $thickness .';';
-			}
-			$style = !empty($style_rules) ? ' style="'. esc_attr($style_rules) .'"' : '';
-			$output .= '<div class="row">';
-				$output .= '<div class="col-sm-'. esc_attr($width) . (!empty($offset) ? ' col-sm-offset-'. esc_attr($offset) : '') .'">';
-					$output .= '<div class="fsn-divider '. fsn_style_params_class($atts) .'"><hr'. (!empty($style) ? $style : '') .'></div>';
-				$output .= '</div>';
-			$output .= '</div>';
-		} else if ($orientation == 'vertical') {
-			//VERTICAL DIVIDER
-			if (!empty($border_color)) {
-				if (!empty($border_color_opacity)) { 
-					$rgb = fsn_hex2rgb($border_color);	
-					$border_color = 'rgba('. $rgb[0] .','. $rgb[1] .','. $rgb[2] .','. $border_color_opacity .')';
-					$style_rules .= 'background:'. $border_color .';background:rgba('. $rgb[0] .','. $rgb[1] .','. $rgb[2] .','. $border_color_opacity .');';	
-				} else {
-					$style_rules .= 'background:'. $border_color .';';	
-				}
-			} else if (!empty($border_color_opacity)) {
-				$style_rules .= 'opacity:'. $border_color_opacity .';';	
-			}
-			if (!empty($thickness)) {
-				$style_rules .= 'width:'. $thickness .';';
-			}
-			if (!empty($height) || !empty($offset_top)) {
-				$style_rules .= (!empty($height) ? 'height:'. $height .';' : '') . (!empty($offset_top) ? 'top:'. $offset_top .';' : '');
-			}
-			$style = !empty($style_rules) ? ' style="'. esc_attr($style_rules) .'"' : '';
-			$output .= '<div class="fsn-divider '. fsn_style_params_class($atts) .'"><span class="fsn-divider-vertical"'. (!empty($style) ? $style : '') .'></span></div>';
-		}
-		
-		return $output;
-	}
-	add_shortcode('fsn_divider', 'fsn_divider_shortcode');
  
-	//MAP SHORTCODE
 	if (function_exists('fsn_map')) {
 		
 		fsn_map(array(
@@ -161,5 +100,72 @@ function fsn_init_divider() {
 		));
 	}
 }
+
+/**
+ * Output Shortcode
+ */
+
+function fsn_divider_shortcode( $atts ) {
+	extract( shortcode_atts( array(
+		'orientation' => 'horizontal',
+		'width' => '12',
+		'offset' => false,
+		'border_color' => '',
+		'border_color_opacity' => '',
+		'thickness' => '',
+		'height' => '',
+		'offset_top' => ''
+	), $atts ) );
+	
+	$output = '';
+	$style_rules = '';
+	
+	if ($orientation == 'horizontal') {
+		//HORIZONTAL DIVIDER
+		if (!empty($border_color)) {
+			if (!empty($border_color_opacity)) { 
+				$rgb = fsn_hex2rgb($border_color);	
+				$style_rules .= 'border-color:'. $border_color .';border-color:rgba('. $rgb[0] .','. $rgb[1] .','. $rgb[2] .','. $border_color_opacity .');';
+			} else {
+				$style_rules .= 'border-color:'. $border_color .';';	
+			}
+		} else if (!empty($border_color_opacity)) {
+			$style_rules .= 'opacity:'. $border_color_opacity .';';	
+		}
+		if (!empty($thickness)) {
+			$style_rules .= 'border-width:'. $thickness .';';
+		}
+		$style = !empty($style_rules) ? ' style="'. esc_attr($style_rules) .'"' : '';
+		$output .= '<div class="row">';
+			$output .= '<div class="col-sm-'. esc_attr($width) . (!empty($offset) ? ' col-sm-offset-'. esc_attr($offset) : '') .'">';
+				$output .= '<div class="fsn-divider '. fsn_style_params_class($atts) .'"><hr'. (!empty($style) ? $style : '') .'></div>';
+			$output .= '</div>';
+		$output .= '</div>';
+	} else if ($orientation == 'vertical') {
+		//VERTICAL DIVIDER
+		if (!empty($border_color)) {
+			if (!empty($border_color_opacity)) { 
+				$rgb = fsn_hex2rgb($border_color);	
+				$border_color = 'rgba('. $rgb[0] .','. $rgb[1] .','. $rgb[2] .','. $border_color_opacity .')';
+				$style_rules .= 'background:'. $border_color .';background:rgba('. $rgb[0] .','. $rgb[1] .','. $rgb[2] .','. $border_color_opacity .');';	
+			} else {
+				$style_rules .= 'background:'. $border_color .';';	
+			}
+		} else if (!empty($border_color_opacity)) {
+			$style_rules .= 'opacity:'. $border_color_opacity .';';	
+		}
+		if (!empty($thickness)) {
+			$style_rules .= 'width:'. $thickness .';';
+		}
+		if (!empty($height) || !empty($offset_top)) {
+			$style_rules .= (!empty($height) ? 'height:'. $height .';' : '') . (!empty($offset_top) ? 'top:'. $offset_top .';' : '');
+		}
+		$style = !empty($style_rules) ? ' style="'. esc_attr($style_rules) .'"' : '';
+		$output .= '<div class="fsn-divider '. fsn_style_params_class($atts) .'"><span class="fsn-divider-vertical"'. (!empty($style) ? $style : '') .'></span></div>';
+	}
+	
+	return $output;
+}
+add_shortcode('fsn_divider', 'fsn_divider_shortcode');
  
 ?>

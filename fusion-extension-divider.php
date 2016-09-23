@@ -6,7 +6,7 @@
  * Plugin Name: Fusion : Extension - Divider
  * Plugin URI: http://fusion.1867dev.com
  * Description: Divider Extension Package for Fusion.
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
  * License: GPL2
@@ -30,9 +30,6 @@ class FusionExtensionDivider	{
 		// Enqueue front end scripts and styles
 		add_action('wp_enqueue_scripts', array($this, 'front_enqueue_scripts_styles'));	
 		
-		// Plugin activation / deactivation hooks
-		register_activation_hook( __FILE__, array($this, 'plugin_activated') );
-		register_deactivation_hook( __FILE__, array($this, 'plugin_deactivated') );
 	}
 	
 	/**
@@ -43,7 +40,10 @@ class FusionExtensionDivider	{
 	 */
 	 
 	 public function front_enqueue_scripts_styles() {
-		wp_enqueue_style( 'fsn_divider', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-divider.css', false, '1.0.0' );
+		global $post;
+		if (has_shortcode($post->post_content, 'fsn_divider')) {
+			wp_enqueue_style( 'fsn_divider', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-divider.css', false, '1.0.0' );
+		}
 	}
 }
 
