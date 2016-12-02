@@ -58,13 +58,6 @@ function fsn_init_divider() {
 				),
 				array(
 					'type' => 'text',
-					'param_name' => 'thickness',
-					'label' => __('Thickness', 'fusion-extension-divider'),
-					'help' => __('e.g. 2px', 'fusion-extension-divider'),
-					'section' => 'advanced'
-				),
-				array(
-					'type' => 'text',
 					'param_name' => 'height',
 					'label' => __('Height', 'fusion-extension-divider'),
 					'help' => __('e.g. 200px', 'fusion-extension-divider'),
@@ -84,17 +77,24 @@ function fsn_init_divider() {
 					)
 				),
 				array(
+					'type' => 'text',
+					'param_name' => 'thickness',
+					'label' => __('Thickness', 'fusion-extension-divider'),
+					'help' => __('e.g. 2px', 'fusion-extension-divider'),
+					'section' => 'style'
+				),
+				array(
 					'type' => 'colorpicker',
 					'param_name' => 'border_color',
 					'label' => __('Color', 'fusion-extension-divider'),
-					'section' => 'advanced'
+					'section' => 'style'
 				),
 				array(
 					'type' => 'text',
 					'param_name' => 'border_color_opacity',
 					'label' => __('Color Opacity', 'fusion-extension-divider'),
 					'help' => __('Value between 0 and 1.', 'fusion-extension-divider'),
-					'section' => 'advanced'
+					'section' => 'style'
 				)
 			)
 		));
