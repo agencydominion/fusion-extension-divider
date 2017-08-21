@@ -6,9 +6,11 @@
  * Plugin Name: Fusion : Extension - Divider
  * Plugin URI: http://www.agencydominion.com/fusion/
  * Description: Divider Extension Package for Fusion.
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
+ * Text Domain: fusion-extension-divider
+ * Domain Path: /languages/
  * License: GPL2
  */
  
@@ -25,11 +27,22 @@ class FusionExtensionDivider	{
 	public function __construct() {
 						
 		// Initialize the language files
-		load_plugin_textdomain( 'fusion-extension-divider', false, plugin_dir_url( __FILE__ ) . 'languages' );
+		add_action('plugins_loaded', array($this, 'load_textdomain'));
 		
 		// Enqueue front end scripts and styles
 		add_action('wp_enqueue_scripts', array($this, 'front_enqueue_scripts_styles'));	
 		
+	}
+	
+	/**
+	 * Load Textdomain
+	 *
+	 * @since 1.1.4
+	 *
+	 */
+	 
+	public function load_textdomain() {
+		load_plugin_textdomain( 'fusion-extension-divider', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 	
 	/**
