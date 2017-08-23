@@ -15,7 +15,7 @@
 .fsn-divider-vertical	{
 	display:block;
 	width:1px;
-	position:relative;
+	position:absolute;
 	left:50%;
 	background:#eee;
 }
